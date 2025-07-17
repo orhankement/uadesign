@@ -220,7 +220,7 @@
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 40px;
     padding: 0 40px;
     max-width: 1200px;
@@ -228,8 +228,9 @@
 }
 
 .service-image-card {
-    position: relative;
-    height: 300px;
+   position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5; /* 1080x1350 oranı */
     background-size: cover;
     background-position: center;
     border-radius: 15px;
@@ -244,6 +245,7 @@
     inset: 0;
     background: rgba(0, 0, 0, 0.2);
     transition: background 0.3s ease;
+    z-index: 1;
 }
 
 .service-image-card:hover::before {
@@ -255,7 +257,8 @@
     bottom: 0;
     color: white;
     padding: 20px;
-    z-index: 1;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
 }
 
 .service-title {
