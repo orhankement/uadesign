@@ -1,62 +1,50 @@
-  // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+document.addEventListener("DOMContentLoaded", function () {
+  // Navbar scroll effect
+  window.addEventListener("scroll", function () {
+    const nav = document.querySelector(".nav");
+    if (window.scrollY > 10) {
+      nav.classList.add("scrolled");
+    } else {
+      nav.classList.remove("scrolled");
+    }
+  });
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+  // Smooth scroll to anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
 
-        // Side navigation active state
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.side-nav-item');
+  // Hero Button action (example: scroll to services)
+  const heroBtn = document.querySelector(".hero-btn");
+  if (heroBtn) {
+    heroBtn.addEventListener("click", () => {
+      const servicesSection = document.querySelector(".services-section");
+      if (servicesSection) {
+        servicesSection.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  }
 
-        function updateActiveSection() {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                const target = item.getAttribute('data-target');
-                if (target === `#${current}`) {
-                    item.classList.add('active');
-                }
-            });
+  // Optional: Reveal elements on scroll (basic)
+  const revealElements = document.querySelectorAll(".service-card, .testimonial-card, .featured-content");
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
         }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
 
-        window.addEventListener('scroll', updateActiveSection);
-
-        // Side navigation click handlers
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const target = document.querySelector(item.getAttribute('data-target'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Initialize
-        updateActiveSection();
+  revealElements.forEach(el => observer.observe(el));
+});
