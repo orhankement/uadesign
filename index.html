@@ -1,61 +1,143 @@
-<!DOCTYPE html> 
-<html lang="tr"> 
+<!DOCTYPE html>
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Ümit Ateş - Grafik Tasarımcı</title>
-    <meta name="description" content="Ümit Ateş'in resmi portfolyo sitesi. Grafik tasarım, kurumsal kimlik ve dijital tasarım hizmetleri.">
-    <meta name="keywords" content="grafik tasarım, kurumsal kimlik, logo, dijital tasarım, Ümit Ateş">
-    <meta name="author" content="Ümit Ateş">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ümit Ateş Design - İç Mimarlık & Tasarım</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Ümit Ateş</h1>
-        <p>Grafik Tasarımcı</p>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#about">Hakkımda</a></li>
-            <li><a href="#services">Hizmetler</a></li>
-            <li><a href="#portfolio">Portfolyo</a></li>
-            <li><a href="#contact">İletişim</a></li>
-        </ul>
+    <!-- Navigation -->
+    <nav class="nav" id="navbar">
+        <div class="nav-left">
+            <div class="logo-icon">
+                <a href="#home">
+                    <img src="https://ik.imagekit.io/kementstudios/uad.png" alt="Logo" style="height: 50px;">
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">Hakkımızda</a></li>
+                <li><a href="#services">Hizmetler</a></li>
+                <li><a href="#portfolio">Referanslar</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+        </div>
     </nav>
 
-    <section id="about">
-        <h2>Hakkımda</h2>
-        <p>Merhaba! Ben Ümit Ateş, yaratıcı grafik tasarım çözümleri sunuyorum. Kurumsal kimlikten dijital tasarıma kadar geniş bir yelpazede hizmet veriyorum.</p>
+    <!-- Side Navigation -->
+    <div class="side-nav">
+        <div class="side-nav-item active"></div>
+        <div class="side-nav-item"></div>
+        <div class="side-nav-item"></div>
+        <div class="side-nav-item"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-subtitle">Yaşam alanlarınızı hayallerinizden daha güzel hale getiriyoruz</div>
+            <h1 class="hero-title">Ümit Ateş<br>DESIGN STUDIO</h1>
+            <p class="hero-description">15 yıllık deneyimimizle iç mimarlık ve tasarım alanında müşterilerimize kaliteli hizmet sunmaktayız.</p>
+            <a href="#services" class="hero-btn">Hizmetlerimiz</a>
+        </div>
     </section>
 
-    <section id="services">
-        <h2>Hizmetler</h2>
-        <ul>
-            <li>Logo Tasarımı</li>
-            <li>Kurumsal Kimlik</li>
-            <li>Sosyal Medya Tasarımları</li>
-            <li>Web Tasarımı</li>
-        </ul>
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="services-header">
+            <h2 class="services-title">Hizmetlerimiz</h2>
+        </div>
+        <div class="services-container">
+            <!-- Service Card 1 -->
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <div class="service-category">Mimarlık ve İç Tasarım</div>
+                <div class="service-tags">
+                    <span class="service-tag highlight">Mimari Tasarım</span>
+                    <span class="service-tag highlight">3D Render</span>
+                    <span class="service-tag">CGI</span>
+                    <span class="service-tag">İç Tasarım</span>
+                    <span class="service-tag">Yapı Tasarımı</span>
+                    <span class="service-tag">Peyzaj Tasarımı</span>
+                    <span class="service-tag">Danışmanlık</span>
+                </div>
+                <p class="service-description">Konut, villa ve daire projeleriniz için komple iç tasarım hizmeti.</p>
+                <div class="service-number">01</div>
+            </div>
+
+            <!-- Service Card 2 -->
+            <div class="service-card">
+                <div class="service-icon"></div>
+                <div class="service-category">Özel Tasarım Mobilya</div>
+                <div class="service-tags">
+                    <span class="service-tag">Özel Mobilya</span>
+                    <span class="service-tag highlight">Online Mağaza</span>
+                    <span class="service-tag">Dekor</span>
+                    <span class="service-tag">Malzeme Tedarik</span>
+                </div>
+                <p class="service-description">Özel ölçülerde mutfak, dolap ve giyinme odası tasarımları.</p>
+                <div class="service-number">02</div>
+            </div>
+        </div>
     </section>
 
-    <section id="portfolio">
-        <h2>Portfolyo</h2>
-        <p>Yakında burada çalışmalarımı görebileceksiniz.</p>
+    <!-- Featured Section -->
+    <section class="featured-section" id="portfolio">
+        <div class="featured-bg"></div>
+        <div class="featured-header">
+            <h2 class="featured-title">Öne Çıkan İşler</h2>
+        </div>
+        <div class="featured-content">
+            <div class="featured-subtitle">Proje sürecinde her adımda müşterilerimizin memnuniyetini ön planda tutuyoruz</div>
+            <h2 class="featured-main-title">Modern Villa<br>Tasarım Projesi</h2>
+            <p class="featured-description">450 m² villa için komple iç tasarım projesi. Modern ve minimalist yaklaşımla açık plan yaşam alanları tasarlandı.</p>
+            <div class="featured-tags">
+                <span class="featured-tag">Villa Tasarımı</span>
+                <span class="featured-tag">Sıcak Görünüm</span>
+                <span class="featured-tag">%100 Doğal</span>
+                <span class="featured-tag">Çelik Konstrüksiyon</span>
+                <span class="featured-tag">Dış Kaplama</span>
+                <span class="featured-tag">Çok Katlı</span>
+            </div>
+            <a href="#contact" class="hero-btn">Proje Detayları</a>
+        </div>
     </section>
 
-    <section id="contact">
-        <h2>İletişim</h2>
-        <form id="contactForm">
-            <input type="text" name="name" placeholder="Adınız" required>
-            <input type="email" name="email" placeholder="E-posta" required>
-            <textarea name="message" placeholder="Mesajınız" required></textarea>
-            <button type="submit">Gönder</button>
-        </form>
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="about">
+        <div class="testimonials-header">
+            <h2 class="testimonials-title">Müşterilerimiz Ne Diyor</h2>
+        </div>
+        <div class="testimonials-content">
+            <div class="testimonial-card">
+                <div class="testimonial-quote">"Ümit Ateş Design ile hayal ettiğimiz evi gerçeğe dönüştürdük. Kaliteli hizmet ve profesyonel yaklaşım için teşekkürler."</div>
+                <div class="testimonial-author">Ahmet Yılmaz - Villa Sahibi</div>
+            </div>
+            <div class="testimonial-stats">
+                <div>
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Müşteri Memnuniyeti</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Ümit Ateş. Tüm hakları saklıdır.</p>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <p>Beşiktaş, İstanbul<br>+90 (212) 555-0123<br>info@umitatesdesign.com</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hizmetler</h3>
+                <p>İç Mimarlık<br>Mutfak Tasarımı<br>Dolap Tasarımı<br>Ofis Tasarımı</p>
+            </div>
+            <div class="footer-section">
+                <h3>Çalışma Saatleri</h3>
+                <p>Pazartesi - Cuma: 09:00-18:00<br>Cumartesi: 10:00-16:00<br>Pazar: Kapalı</p>
+            </div>
+        </div>
     </footer>
 
     <script src="script.js"></script>
