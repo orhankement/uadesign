@@ -666,6 +666,7 @@
 </head>
 <body>
     <!-- Navigation -->
+    <nav class="nav" id="navbar">
     <nav class="nav">
     <div class="nav-left">
         <div class="logo-icon">
@@ -847,6 +848,16 @@
                     behavior: 'smooth'
                 });
             });
+            
+            // Header scroll efekti
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
         });
     </script>
 </body>
