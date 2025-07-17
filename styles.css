@@ -110,7 +110,7 @@
         .hero {
             position: relative;
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://ik.imagekit.io/kementstudios/Ads%C4%B1z%20tasar%C4%B1m.png');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://ik.imagekit.io/kementstudios/header.png');
             background-size: cover;
             background-position: center;
             display: flex;
