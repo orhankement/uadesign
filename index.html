@@ -488,22 +488,62 @@
             color: white;
         }
 
-        /* Responsive Design */
+      /* Responsive Design */
         @media (max-width: 768px) {
             .nav {
-                padding: 20px;
+                padding: 15px 20px;
+            }
+
+            .nav.scrolled {
+                padding: 12px 20px;
             }
 
             .nav-links {
                 display: none;
             }
 
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .contact-btn {
+                display: none;
+            }
+
             .hero-title {
-                font-size: 3rem;
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 12px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-content {
+                padding: 0 20px;
             }
 
             .featured-main-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+
+            .featured-subtitle {
+                font-size: 12px;
+            }
+
+            .featured-description {
+                font-size: 14px;
+            }
+
+            .featured-tags {
+                gap: 15px;
+            }
+
+            .featured-tag {
+                font-size: 10px;
             }
 
             .services-container,
@@ -511,6 +551,23 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
+            }
+
+            .service-card {
+                padding: 40px 30px;
+                min-height: 300px;
+            }
+
+            .testimonial-card {
+                padding: 40px 30px;
+            }
+
+            .testimonial-quote {
+                font-size: 18px;
+            }
+
+            .stat-number {
+                font-size: 36px;
             }
 
             .side-nav {
@@ -522,11 +579,88 @@
             .testimonials-header {
                 padding: 0 20px;
             }
+
+            .services-section,
+            .testimonials-section {
+                padding: 80px 0;
+            }
+
+            .services-container,
+            .testimonials-content {
+                padding: 0 20px;
+            }
+
+            .footer-content {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .featured-main-title {
+                font-size: 1.5rem;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+
+            .testimonial-card {
+                padding: 30px 20px;
+            }
+
+            .testimonial-quote {
+                font-size: 16px;
+            }
+
+            .stat-number {
+                font-size: 28px;
+            }
+        }
+
+        /* Touch Optimization */
+        @media (hover: none) {
+            .service-card:hover,
+            .testimonial-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+
+            .service-tag:hover {
+                transform: none;
+            }
+
+            .hero-btn:hover,
+            .contact-btn:hover {
+                transform: none;
+            }
         }
 
         /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Performance Optimizations */
+        * {
+            will-change: auto;
+        }
+
+        .hero,
+        .featured-section {
+            transform: translateZ(0);
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
