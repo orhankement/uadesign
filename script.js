@@ -17,6 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
       if (target) {
         target.scrollIntoView({ behavior: "smooth" });
       }
+      // Menü kapansın (mobilde tıklayınca)
+      const mobileNav = document.getElementById("mobileNav");
+      const hamburger = document.getElementById("hamburger");
+      if (mobileNav.classList.contains("show")) {
+        mobileNav.classList.remove("show");
+        hamburger.classList.remove("active");
+        hamburger.setAttribute("aria-expanded", "false");
+      }
     });
   });
 
@@ -31,14 +39,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Hamburger menu toggle
-const hamburger = document.getElementById("hamburger");
-const mobileNav = document.getElementById("mobileNav");
+  // Hamburger menu toggle with animation and aria attribute
+  const hamburger = document.getElementById("hamburger");
+  const mobileNav = document.getElementById("mobileNav");
 
-hamburger.addEventListener("click", () => {
-  mobileNav.classList.toggle("show");
-});
+  hamburger.addEventListener("click", () => {
+    mobileNav.classList.toggle("show");
+    hamburger.classList.toggle("active");
 
+    // Aria attribute update
+    const expanded = hamburger.classList.contains("active");
+    hamburger.setAttribute("aria-expanded", expanded);
+  });
+
+  // Accessibility: Enter or Space key toggles menu
+  hamburger.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      hamburger.click();
+    }
+  });
 
   // Side nav scroll-to-section on click
   const sideNavItems = document.querySelectorAll(".side-nav-item");
@@ -63,6 +83,7 @@ hamburger.addEventListener("click", () => {
   window.addEventListener("scroll", () => {
     let current = null;
     sectionMap.forEach((section, index) => {
+      if (!section.element) return;
       const rect = section.element.getBoundingClientRect();
       if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
         current = index;
@@ -74,8 +95,8 @@ hamburger.addEventListener("click", () => {
     });
   });
 
-  // Reveal on scroll (optional)
-  const revealElements = document.querySelectorAll(".service-card, .testimonial-card, .featured-content");
+  // Reveal on scroll
+  const revealElements = document.querySelectorAll(".service-image-card, .testimonial-card, .featured-content");
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
