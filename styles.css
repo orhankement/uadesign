@@ -5,11 +5,16 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
-    overflow-x: hidden;
+    background-color: #fdfdfd;
+    overflow-x: hidden; /* Yatay kaydırmayı engellemek için */
 }
 
 /* Navigation */
@@ -84,7 +89,7 @@ body {
 
 /* Hamburger Button */
 .hamburger {
-    display: none;
+    display: none; /* Varsayılan olarak gizli */
     flex-direction: column;
     justify-content: space-between;
     width: 25px;
@@ -99,7 +104,7 @@ body {
     width: 100%;
     background: white;
     border-radius: 3px;
-    transition: all 0.4s ease;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     transform-origin: center;
 }
 
@@ -109,6 +114,7 @@ body {
 
 .hamburger.active span:nth-child(2) {
     opacity: 0;
+    transform: scale(0);
 }
 
 .hamburger.active span:nth-child(3) {
@@ -117,12 +123,12 @@ body {
 
 /* Mobile Navigation */
 .mobile-nav {
-    display: none;
+    display: none; /* Başlangıçta gizli */
     position: absolute;
-    top: 100%;
+    top: 100%; /* Nav'ın hemen altından başlar */
     left: 0;
-    background: rgba(20, 20, 20, 0.95);
-    width: 100vw;
+    background: rgba(20, 20, 20, 0.98);
+    width: 100%; /* DÜZELTME: 100vw yerine 100% */
     flex-direction: column;
     padding: 20px 0;
     list-style: none;
@@ -131,7 +137,7 @@ body {
 }
 
 .mobile-nav.show {
-    display: flex;
+    display: flex; /* Hamburger'e tıklandığında görünür yapar */
 }
 
 .mobile-nav li {
@@ -146,25 +152,34 @@ body {
     text-decoration: none;
     padding: 10px 20px;
     display: block;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .mobile-nav li a:hover {
     background: #ff4444;
+    color: white;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .hamburger {
-        display: flex;
+        display: flex; /* Mobil'de hamburgeri göster */
     }
 
-    .nav-links {
-        display: none !important;
+    .desktop-nav {
+        display: none !important; /* Masaüstü menüyü gizle */
     }
 
-    .side-nav {
-        display: none;
+    .nav {
+        padding: 15px 20px;
+    }
+
+    .nav.scrolled {
+        padding: 10px 20px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
     }
 
     .testimonials-content {
@@ -173,7 +188,8 @@ body {
 
     .footer-content {
         flex-direction: column;
-        gap: 20px;
+        text-align: center;
+        gap: 30px;
     }
 }
 
@@ -189,7 +205,11 @@ body {
     justify-content: center;
     color: white;
     text-align: center;
-    padding: 0 40px;
+    padding: 0 20px;
+}
+
+.hero-content {
+    max-width: 800px;
 }
 
 .hero-title {
@@ -197,13 +217,20 @@ body {
     font-weight: 300;
     margin-bottom: 20px;
     text-transform: uppercase;
+    line-height: 1.2;
 }
 
 .hero-description {
     font-size: 16px;
     max-width: 600px;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 30px auto;
     opacity: 0.9;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    font-style: italic;
 }
 
 .hero-btn {
@@ -225,40 +252,10 @@ body {
     color: #000;
 }
 
-/* Side Navigation */
-.side-nav {
-    position: fixed;
-    left: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.side-nav-item {
-    width: 12px;
-    height: 12px;
-    background: rgba(255, 0, 0, 0.4);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.side-nav-item.active {
-    background: red;
-    transform: scale(1.2);
-}
-
-.side-nav-item:hover {
-    background: rgba(255, 0, 0, 0.8);
-}
-
 /* Services Section */
 .services-section {
     background: #fdfdfd;
-    padding: 100px 0;
+    padding: 100px 20px;
 }
 
 .services-header {
@@ -274,9 +271,8 @@ body {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 40px;
-    padding: 0 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     max-width: 1200px;
     margin: auto;
 }
@@ -289,30 +285,33 @@ body {
     background-position: center;
     border-radius: 15px;
     overflow: hidden;
-    transition: 0.3s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.service-image-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.15);
 }
 
 .service-image-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
     transition: background 0.3s ease;
     z-index: 1;
-}
-
-.service-image-card:hover::before {
-    background: rgba(0, 0, 0, 0.5);
 }
 
 .service-overlay {
     position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0;
     color: white;
-    padding: 20px;
+    padding: 25px;
     z-index: 2;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
 }
 
 .service-title {
@@ -326,14 +325,28 @@ body {
 }
 
 /* Featured Section */
+.featured-section {
+    background: #000;
+    padding: 100px 20px;
+    color: white;
+    text-align: center;
+}
+
+.featured-header {
+    margin-bottom: 60px;
+}
+
+.featured-title {
+    font-size: 2.5rem;
+    font-weight: 300;
+}
 
 .featured-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 40px;
-    padding: 0 40px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     max-width: 1200px;
-    margin: 60px auto 0 auto;
+    margin: auto;
 }
 
 .featured-image-card {
@@ -344,7 +357,6 @@ body {
     background-position: center;
     border-radius: 15px;
     overflow: hidden;
-    transition: 0.3s ease;
     cursor: pointer;
 }
 
@@ -352,22 +364,28 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 60%);
     transition: background 0.3s ease;
     z-index: 1;
-}
-
-.featured-image-card:hover::before {
-    background: rgba(0, 0, 0, 0.5);
 }
 
 .featured-overlay {
     position: absolute;
     bottom: 0;
+    left: 0;
+    right: 0;
     color: white;
-    padding: 20px;
+    padding: 25px;
     z-index: 2;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    text-align: left;
+    transform: translateY(20%);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.featured-image-card:hover .featured-overlay {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .featured-card-title {
@@ -381,55 +399,10 @@ body {
     margin-bottom: 20px;
 }
 
-
-.featured-section {
-    background: #000;
-    padding: 100px 0;
-    color: white;
-    text-align: center;
-}
-
-.featured-title {
-    font-size: 2.5rem;
-    font-weight: 300;
-    margin-bottom: 20px;
-}
-
-.featured-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 40px;
-}
-
-.featured-subtitle {
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 20px;
-    opacity: 0.8;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.featured-main-title {
-    font-size: 3rem;
-    font-weight: 300;
-    line-height: 1.1;
-    margin-bottom: 30px;
-    text-transform: uppercase;
-}
-
-.featured-description {
-    font-size: 16px;
-    margin-bottom: 40px;
-    opacity: 0.9;
-    line-height: 1.6;
-}
-
-
 /* Testimonials Section */
 .testimonials-section {
     background: #fdfdfd;
-    padding: 100px 0;
+    padding: 100px 20px;
 }
 
 .testimonials-header {
@@ -441,30 +414,27 @@ body {
     font-size: 2.5rem;
     font-weight: 300;
     color: #333;
-    margin-bottom: 20px;
 }
 
 .testimonials-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 60px;
+    align-items: center;
 }
 
 .testimonial-card {
     background: white;
-    padding: 30px 40px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    padding: 40px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.08);
     border-radius: 20px;
     font-style: italic;
     font-size: 1.25rem;
     line-height: 1.6;
     color: #555;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    border-left: 5px solid #ff4444;
 }
 
 .testimonial-quote {
@@ -474,21 +444,19 @@ body {
 .testimonial-author {
     font-weight: 700;
     font-size: 1rem;
-    color: #ff4444;
+    color: #333;
     text-align: right;
+    font-style: normal;
 }
 
 .testimonial-stats {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 3rem;
-    font-weight: 700;
-    color: #ff4444;
+    text-align: center;
 }
 
 .stat-number {
     font-size: 5rem;
+    font-weight: 700;
+    color: #ff4444;
     line-height: 1;
 }
 
@@ -498,14 +466,13 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     opacity: 0.8;
-    margin-left: 10px;
 }
 
 /* Footer */
 footer {
-    background: #222;
+    background: #1a1a1a;
     color: white;
-    padding: 40px 20px;
+    padding: 60px 20px;
     margin-top: 60px;
 }
 
@@ -520,7 +487,7 @@ footer {
 
 .footer-section {
     flex: 1;
-    min-width: 200px;
+    min-width: 220px;
 }
 
 .footer-section h3 {
@@ -528,9 +495,12 @@ footer {
     font-weight: 600;
     font-size: 1.1rem;
     color: #ff4444;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .footer-section p {
-    line-height: 1.6;
-    opacity: 0.8;
+    line-height: 1.8;
+    opacity: 0.7;
+    font-size: 0.95rem;
 }
