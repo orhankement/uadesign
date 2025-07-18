@@ -31,6 +31,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Hamburger menu toggle
+const hamburger = document.getElementById("hamburger");
+const mobileNav = document.getElementById("mobileNav");
+
+hamburger.addEventListener("click", () => {
+  mobileNav.classList.toggle("show");
+});
+
+
   // Side nav scroll-to-section on click
   const sideNavItems = document.querySelectorAll(".side-nav-item");
   sideNavItems.forEach(item => {
