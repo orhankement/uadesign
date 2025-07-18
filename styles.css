@@ -160,39 +160,6 @@ body {
     color: white;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .hamburger {
-        display: flex;
-    }
-
-    .desktop-nav {
-        display: none !important;
-    }
-
-    .nav {
-        padding: 15px 20px;
-    }
-
-    .nav.scrolled {
-        padding: 10px 20px;
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-    }
-
-    .testimonials-content {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 30px;
-    }
-}
-
 /* Hero Section */
 .hero {
     position: relative;
@@ -420,7 +387,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /* Masaüstünde 2 sütun */
     gap: 40px;
     align-items: stretch;
 }
@@ -484,4 +451,37 @@ footer {
     line-height: 1.8;
     opacity: 0.7;
     font-size: 0.95rem;
+}
+
+/* Responsive Düzenleme */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .desktop-nav {
+        display: none !important;
+    }
+
+    .nav {
+        padding: 15px 20px;
+    }
+
+    .nav.scrolled {
+        padding: 10px 20px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .testimonials-content {
+        grid-template-columns: 1fr; /* Mobilde tek sütun */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
 }
