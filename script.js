@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Navbar scroll effect
+  const nav = document.getElementById("navbar");
   window.addEventListener("scroll", function () {
-    const nav = document.querySelector(".nav");
     if (window.scrollY > 10) {
       nav.classList.add("scrolled");
     } else {
@@ -9,15 +9,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Smooth scroll to anchor links
+  // Smooth scroll for all anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
+      const targetId = this.getAttribute("href");
+      const target = document.querySelector(targetId);
+      
       if (target) {
         target.scrollIntoView({ behavior: "smooth" });
       }
-      // Menü kapansın (mobilde tıklayınca)
+
+      // Close mobile menu after clicking a link
       const mobileNav = document.getElementById("mobileNav");
       const hamburger = document.getElementById("hamburger");
       if (mobileNav.classList.contains("show")) {
@@ -28,17 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Hero Button action
-  const heroBtn = document.querySelector(".hero-btn");
-  if (heroBtn) {
-    heroBtn.addEventListener("click", () => {
-      const servicesSection = document.querySelector(".services-section");
-      if (servicesSection) {
-        servicesSection.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  }
-
   // Hamburger menu toggle with animation and aria attribute
   const hamburger = document.getElementById("hamburger");
   const mobileNav = document.getElementById("mobileNav");
@@ -47,12 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
     mobileNav.classList.toggle("show");
     hamburger.classList.toggle("active");
 
-    // Aria attribute update
-    const expanded = hamburger.classList.contains("active");
-    hamburger.setAttribute("aria-expanded", expanded);
+    // Aria attribute update for accessibility
+    const isExpanded = hamburger.classList.contains("active");
+    hamburger.setAttribute("aria-expanded", isExpanded);
   });
 
-  // Accessibility: Enter or Space key toggles menu
+  // Accessibility: Allow Enter or Space key to toggle menu
   hamburger.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -60,43 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Side nav scroll-to-section on click
-  const sideNavItems = document.querySelectorAll(".side-nav-item");
-  sideNavItems.forEach(item => {
-    item.addEventListener("click", () => {
-      const targetSelector = item.getAttribute("data-target");
-      const targetSection = document.querySelector(targetSelector);
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: "smooth" });
-      }
-    });
-  });
-
-  // Active side nav item on scroll
-  const sectionMap = [
-    { id: "#home", element: document.querySelector("#home") },
-    { id: "#services", element: document.querySelector("#services") },
-    { id: "#portfolio", element: document.querySelector("#portfolio") },
-    { id: "#about", element: document.querySelector("#about") }
-  ];
-
-  window.addEventListener("scroll", () => {
-    let current = null;
-    sectionMap.forEach((section, index) => {
-      if (!section.element) return;
-      const rect = section.element.getBoundingClientRect();
-      if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
-        current = index;
-      }
-    });
-
-    sideNavItems.forEach((item, index) => {
-      item.classList.toggle("active", index === current);
-    });
-  });
-
-  // Reveal on scroll
-  const revealElements = document.querySelectorAll(".service-image-card, .testimonial-card, .featured-content");
+  // Reveal on scroll effect using IntersectionObserver
+  const revealElements = document.querySelectorAll(".service-image-card, .testimonial-card, .featured-image-card");
   const observer = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
