@@ -184,22 +184,23 @@
         }
 
         .side-nav-item {
-            width: 12px;
-            height: 12px;
-            background: rgba(255,255,255,0.3);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 0, 0, 0.4); /* kırmızı tonu */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-        .side-nav-item.active {
-            background: white;
-            transform: scale(1.2);
-        }
+.side-nav-item.active {
+    background: red;
+    transform: scale(1.2);
+}
 
-        .side-nav-item:hover {
-            background: rgba(255,255,255,0.7);
-        }
+.side-nav-item:hover {
+    background: rgba(255, 0, 0, 0.8);
+}
+
 
         /* Services Section */
       .services-section {
