@@ -163,7 +163,7 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
     .hamburger {
-        display: flex; /
+        display: flex;
     }
 
     .desktop-nav {
