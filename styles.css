@@ -500,6 +500,48 @@
             .footer-content {
                 padding: 0 20px;
             }
+                    /* Hamburger button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+/* Mobil menü */
+.mobile-nav {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(20, 20, 20, 0.95);
+  width: 100%;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.mobile-nav.show {
+  display: flex;
+}
+
+/* Hamburger ve mobil menü sadece küçük ekranlarda */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none !important;
+  }
+
         }
 
         @media (max-width: 480px) {
