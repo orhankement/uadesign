@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Hero Button action (example: scroll to services)
+  // Hero Button action
   const heroBtn = document.querySelector(".hero-btn");
   if (heroBtn) {
     heroBtn.addEventListener("click", () => {
@@ -31,7 +31,41 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Optional: Reveal elements on scroll (basic)
+  // Side nav scroll-to-section on click
+  const sideNavItems = document.querySelectorAll(".side-nav-item");
+  sideNavItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const targetSelector = item.getAttribute("data-target");
+      const targetSection = document.querySelector(targetSelector);
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+
+  // Active side nav item on scroll
+  const sectionMap = [
+    { id: "#home", element: document.querySelector("#home") },
+    { id: "#services", element: document.querySelector("#services") },
+    { id: "#portfolio", element: document.querySelector("#portfolio") },
+    { id: "#about", element: document.querySelector("#about") }
+  ];
+
+  window.addEventListener("scroll", () => {
+    let current = null;
+    sectionMap.forEach((section, index) => {
+      const rect = section.element.getBoundingClientRect();
+      if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
+        current = index;
+      }
+    });
+
+    sideNavItems.forEach((item, index) => {
+      item.classList.toggle("active", index === current);
+    });
+  });
+
+  // Reveal on scroll (optional)
   const revealElements = document.querySelectorAll(".service-card, .testimonial-card, .featured-content");
   const observer = new IntersectionObserver(
     entries => {
@@ -41,10 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     },
-    {
-      threshold: 0.1,
-    }
+    { threshold: 0.1 }
   );
-
   revealElements.forEach(el => observer.observe(el));
 });
